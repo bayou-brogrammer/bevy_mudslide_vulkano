@@ -1,5 +1,5 @@
-const SHADER_DIR: &str = "shaders";
-const COMPUTE_SHADER_DIR: &str = "compute_shaders";
+const SHADER_DIR: &str = "sandbox/shaders";
+const COMPUTE_SHADER_DIR: &str = "sandbox/compute_shaders";
 
 // Ensure that we recompile when shaders are changed
 fn main() {
