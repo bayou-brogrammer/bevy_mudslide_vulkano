@@ -1,0 +1,60 @@
+[package]
+edition = "2021"
+name    = "bevy_sand_shader"
+publish = false
+version = "0.1.0"
+
+[features]
+default = ["native-dev"]
+
+core       = []
+dev        = ["core"]
+native     = ["core"]
+native-dev = ["bevy/dynamic_linking", "bevy/filesystem_watcher", "dev", "native"]
+tracing    = ["bevy/trace_chrome"]
+wasm       = ["core"]
+wasm_dev   = ["wasm", "dev"]
+
+[dependencies]
+bevy_vulkano    = { version = "0.12", features = ["gui"] }
+vulkano         = "0.33"
+vulkano-shaders = "0.33"
+vulkano-util    = "0.33"
+
+bevy_asset_loader  = { version = "0.16", features = ["progress_tracking"] }
+bevy_common_assets = { version = "0.6", features = ["ron", "toml"] }
+bevy_fn_plugin     = { git = "https://github.com/Xion/bevy_fn_plugin" }
+bevy_mod_sysfail   = "2"
+iyes_progress      = "0.8"
+
+anyhow       = "1"
+bitflags     = "2"
+image        = "0.24"
+log          = "0.4"
+rand         = "0.8"
+strum        = "0.24"
+strum_macros = "0.24"
+thiserror    = "1"
+winit        = "0.28"
+
+ron   = "0.8"
+serde = { version = "1.0" }
+
+[dependencies.bevy]
+default-features = false
+features         = ["bevy_asset"]
+version          = "0.10"
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.dev]
+opt-level = 1
+
+[profile.release]
+codegen-units = 1
+lto           = true
+
+[profile.dist]
+inherits = "release"
+lto      = "thin"
