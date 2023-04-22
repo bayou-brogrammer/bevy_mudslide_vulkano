@@ -1,6 +1,6 @@
 [package]
 edition = "2021"
-name    = "bevy_sand_shader"
+name    = "bevy_mudslide_vulkano"
 publish = false
 version = "0.1.0"
 
